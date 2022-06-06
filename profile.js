@@ -12,9 +12,7 @@ class Profile {
   }
 
   isNameValid(name) {
-    const isLengthValid = name.length > 4;
-    const areCharactersValid = /^[a-z]{5,}$/.test(name);
-    return isLengthValid && areCharactersValid;
+    return name.match(/^[a-z]{5,}$/i);
   }
 
   storeName(name) {
