@@ -36,6 +36,7 @@ const createProfile = function () {
     if (personalInfo.length === 3) {
       storeInfo(profile, personalInfo)
       writeJson('profile.json', profile.getProfile());
+      console.log('thank you');
       process.exit()
     }
     index++;
