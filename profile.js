@@ -4,47 +4,37 @@ const writeJson = function (file, data) {
   fs.writeFileSync(file, JSON.stringify(data), 'utf-8');
 };
 
-const isNameValid = function (name) {
-  return name.match(/^[a-z]{5,}$/);
-}
+const isNameValid = (name) => name.match(/^[a-z]{5,}$/);
 
-const isDOBValid = function (dob) {
-  return /^\d{4}-\d{2}-\d{2}$/.test(dob);
-}
+const isDOBValid = (dob) => /^\d{4}-\d{2}-\d{2}$/.test(dob);
 
-const areHobbiesValid = function (hobbies) {
-  return hobbies;
-}
+const areHobbiesValid = (hobbies) => hobbies;
 
-const isPhoneNumValid = function (phoneNum) {
-  return phoneNum.match(/\d{10}/);
-}
+const isPhoneNumValid = (phoneNum) => phoneNum.match(/\d{10}/);
 
-const isAddressValid = function (address) {
-  return address;
-}
+const isAddressValid = (address) => address;
 
-const askName = function () {
+const askName = () => {
   console.log('Please Enter Your Name');
 }
 
-const askDOB = function () {
+const askDOB = () => {
   console.log('Please Enter Your Date of Birth(yyyy-mm-dd)');
 }
 
-const askHobbies = function () {
+const askHobbies = () => {
   console.log('Please Enter Your Hobbies');
 }
 
-const askPhoneNum = function () {
+const askPhoneNum = () => {
   console.log('Please Enter Your Phone Number');
 }
 
-const askAddressLine1 = function () {
+const askAddressLine1 = () => {
   console.log('Enter Address Line 1:');
 }
 
-const askAddressLine2 = function () {
+const askAddressLine2 = () => {
   console.log('Enter Address Line 2:');
 }
 
