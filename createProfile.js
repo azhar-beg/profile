@@ -2,13 +2,6 @@ const { Profile } = require('./profile.js');
 
 process.stdin.setEncoding('utf8');
 
-const storeInfo = function (profile, [name, dob, hobbies]) {
-  profile.storeName(name);
-  profile.storeDOB(dob);
-  profile.storeHobbies(hobbies);
-  profile.saveProfile();
-};
-
 const createProfile = function (profile) {
   const personalInfo = [];
   let index = 0;
@@ -25,8 +18,8 @@ const createProfile = function (profile) {
       index--;
     }
 
-    if (personalInfo.length === 3) {
-      storeInfo(profile, personalInfo)
+    if (personalInfo.length === 6) {
+      profile.storeInfo(personalInfo)
       console.log('thank you');
       process.exit()
     }
