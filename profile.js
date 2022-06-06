@@ -6,8 +6,15 @@ class Profile {
   equals(anotherProfile) {
     return anotherProfile instanceof Profile;
   }
+
   askName() {
     console.log('Please Enter Your Name');
+  }
+
+  isNameValid(name) {
+    const isLengthValid = name.length > 4;
+    const areCharactersValid = /^[a-z]{5,}$/.test(name);
+    return isLengthValid && areCharactersValid;
   }
 
   storeName(name) {
@@ -18,12 +25,20 @@ class Profile {
     console.log('Please Enter Your Date of Birth(yyyy-mm-dd)');
   }
 
+  isDOBvalid(dob) {
+    return /^\d{4}-\d{2}-\d{2}$/.test(dob);
+  }
+
   storeDOB(dob) {
     this.dob = dob;
   }
 
   askHobbies() {
     console.log('Please Enter Your Hobbies');
+  }
+
+  areHobbiesValid(hobbies) {
+    return hobbies.length > 0
   }
 
   storeHobbies(hobbies) {
@@ -35,35 +50,5 @@ class Profile {
     return this;
   }
 }
-
-process.stdin.setEncoding('utf8');
-
-const fs = require('fs');
-
-const createProfile = function () {
-  const profile = new Profile();
-  const info = [];
-  const askInfo = [profile.askName(), profile.askDOB, profile.askHobbies]
-  let index = 0;
-  askInfo[index];
-  process.stdin.on('data', (chunk) => {
-    info.push(chunk.split('\n')[0]);
-    if (info.length === 1) {
-      profile.askDOB();
-    }
-    if (info.length === 2) {
-      profile.askHobbies()
-    }
-    if (info.length === 3) {
-      profile.storeName(info[0]);
-      profile.storeDOB(info[1]);
-      profile.storeHobbies(info[2]);
-      fs.writeFileSync('profile.json', JSON.stringify(profile.getProfile()), 'utf-8');
-      console.log(profile.getProfile());
-    }
-  })
-};
-
-createProfile();
 
 exports.Profile = Profile;
