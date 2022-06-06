@@ -1,3 +1,11 @@
+const fs = require('fs');
+
+const writeJson = function (file, data) {
+  fs.writeFileSync(file, JSON.stringify(data), 'utf-8');
+};
+
+
+
 class Profile {
   constructor() {
     this.hobbies = [];
@@ -12,7 +20,7 @@ class Profile {
   }
 
   isNameValid(name) {
-    return name.match(/^[a-z]{5,}$/i);
+    return name.match(/^[a-z]{5,}$/);
   }
 
   storeName(name) {
@@ -44,8 +52,18 @@ class Profile {
       this.hobbies.push(hobby);
     });
   }
-  getProfile() {
-    return this;
+
+  askQuestion(index) {
+    const questions = [this.askName, this.askDOB, this.askHobbies];
+    questions[index]();
+  }
+  isValid(info, index) {
+    const isValid = [this.isNameValid, this.isDOBvalid, this.areHobbiesValid];
+    return isValid[index](info);
+  }
+
+  saveProfile() {
+    writeJson('profile.json', this);
   }
 }
 
