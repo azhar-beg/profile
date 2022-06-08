@@ -11,15 +11,25 @@ class Field {
     this.#parser = parser;
   }
 
-  fill(response) {
-    if (this.#validator(response)) {
-      this.#response = this.#parser(response);
+  fillField(response) {
+    if (!this.#validator(response)) {
+      throw new Error('invalid response');
     }
-    throw new Error('invalid response');
+    this.#response = this.#parser(response);
+  }
+
+  isFilled() {
+    return this.#response !== undefined;
   }
 
   getField() {
     return { name: this.#name, response: this.#response };
+  }
+
+  getResponse() {
+    const response = {};
+    response[this.#name] = this.#response;
+    return response;
   }
 
   getPrompt() {

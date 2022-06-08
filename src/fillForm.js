@@ -1,31 +1,24 @@
-const registerField = function (response, profile, index, personalInfo) {
-  const info = response.split('\n')[0];
-
-  if (profile.isValid(info, index)) {
-    personalInfo.push(info);
-  } else {
-    console.log('invalid information');
-    index--;
+const registerField = function (form, response) {
+  try {
+    form.fillField(response);
+  } catch (err) {
+    console.log('invalid response');
   }
 
-  if (personalInfo.length === 6) {
-    profile.storeInfo(personalInfo);
-    console.log('thank you');
-    process.exit();
+  if (!form.isFilled()) {
+    console.log(form.getPrompt());
+    return
   }
 
-  index++;
-  profile.askQuestion(index);
-  return index;
+  form.saveForm();
+  console.log(`thank you`);
+  process.exit()
 };
-const fillForm = function (profile) {
-  const personalInfo = [];
-  let index = 0;
 
-  profile.askQuestion(index);
-
+const fillForm = function (form) {
+  console.log(form.getPrompt());
   process.stdin.on('data', (response) => {
-    index = registerField(response, profile, index, personalInfo);
+    registerField(form, response.trim());
   });
 };
 
