@@ -1,7 +1,3 @@
-const writeJson = function (file, data) {
-  fs.writeFileSync(file, JSON.stringify(data), 'utf-8');
-};
-
 class Form {
   #fields;
   #currentIndex;
