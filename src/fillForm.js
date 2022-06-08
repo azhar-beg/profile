@@ -5,28 +5,29 @@ const writeJson = function (file, data) {
 
 const onCompleteForm = function (fileName, form) {
   writeJson(fileName, form);
-  console.log(`thank you`);
   process.stdin.destroy();
 };
 
-const registerField = function (form, response, fileName) {
+const registerField = function (form, response, logger, fileName) {
   try {
     form.fillField(response);
   } catch (err) {
-    console.log('invalid response');
+    logger('invalid response');
   }
   if (!form.isFilled()) {
-    console.log(form.getPrompt());
+    logger(form.getPrompt());
     return
   }
   onCompleteForm(fileName, form.getResponses());
+  logger(`thank you`);
+  1
 };
 
-const fillForm = function (form, fileName) {
-  console.log(form.getPrompt());
+const fillForm = function (form, logger, fileName) {
+  logger(form.getPrompt());
   process.stdin.on('data', (response) => {
     registerField(form, response.trim(), fileName);
   });
 };
 
-module.exports = { fillForm };
+module.exports = { fillForm, registerField };

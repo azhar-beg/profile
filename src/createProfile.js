@@ -22,7 +22,7 @@ const main = function (fileName) {
   const numField = new Field('ph_no', 'Enter your phone num.', isPhoneNumValid, identity)
   const form = new Form(nameField, dobField, hobbiesField, numField);
 
-  fillForm(form, fileName);
+  fillForm(form, console.log, fileName);
 };
 
 main('./form.json');

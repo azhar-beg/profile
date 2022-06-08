@@ -4,7 +4,7 @@ class Field {
   #validator;
   #parser;
   #prompt;
-  constructor(name, prompt, validator, parser) {
+  constructor(name, prompt, validator = _ => true, parser = x => x) {
     this.#name = name;
     this.#prompt = prompt;
     this.#validator = validator;
