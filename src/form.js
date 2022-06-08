@@ -25,14 +25,16 @@ class Form {
     this.#currentIndex++;
   }
 
-
   #getResponses() {
     const responses = {};
-    return this.#fields.reduce((responses, field) =>
-      ({ ...responses, ...field.getResponse() }), responses);
+    return this.#fields.reduce((responses, field) => {
+      const { name, response } = field.getField();
+      responses[name] = response;
+      return responses;
+    }, responses);
   }
 
-  closeForm() {
+  save() {
     this.#onComplete(this.#getResponses())
   }
 }

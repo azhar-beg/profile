@@ -5,6 +5,7 @@
   - [ ] Add `multilineField` class.
 
 - **DONE**
+  - [x] Change getResponses in `Form` class.
   - [x] Send callback to `Form` for saving and stopping stdin
   - [x] Inject writeFile dependency
   - [x] Inject console log dependency

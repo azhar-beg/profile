@@ -9,7 +9,7 @@ const isDOBValid = (dob) => /^\d{4}-\d{2}-\d{2}$/.test(dob);
 
 const areHobbiesValid = (hobbies) => hobbies;
 
-const isPhoneNumValid = (phoneNum) => phoneNum.match(/\d{10}/);
+const isPhoneNumValid = (phoneNum) => phoneNum.match(/^\d{10}$/);
 
 const identity = x => x;
 const commaSplit = x => x.split(',');
@@ -20,7 +20,8 @@ const writeJson = function (file, data) {
 
 const onCompleteForm = function (fileName, data) {
   writeJson(fileName, data);
-  process.exit();
+  console.log('thank you');
+  process.stdin.destroy();
 };
 
 const main = function (fileName) {

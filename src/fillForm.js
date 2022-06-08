@@ -7,7 +7,7 @@ const registerField = function (form, response, logger) {
   }
 
   if (form.isFilled()) {
-    form.closeForm();
+    form.save();
     return;
   }
 

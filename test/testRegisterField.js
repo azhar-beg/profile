@@ -40,6 +40,7 @@ describe('description', () => {
       file[fileName] = data;
       return file;
     };
+
     const writeFile = mockedWriteToFile.bind(null, 'fileName')
 
     const nameField = new Field('name', 'enter name');

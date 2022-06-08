@@ -26,12 +26,6 @@ class Field {
     return { name: this.#name, response: this.#response };
   }
 
-  getResponse() {
-    const response = {};
-    response[this.#name] = this.#response;
-    return response;
-  }
-
   getPrompt() {
     return this.#prompt;
   }
