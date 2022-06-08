@@ -1,30 +1,26 @@
-const fs = require('fs');
-const writeJson = function (file, data) {
-  fs.writeFileSync(file, JSON.stringify(data), 'utf-8');
-};
 
-const registerField = function (form, response, logger, writeFile) {
+const registerField = function (form, response, logger) {
   try {
     form.fillField(response);
   } catch (err) {
     logger('invalid response');
   }
 
-  if (!form.isFilled()) {
-    logger(form.getPrompt());
-    return
+  if (form.isFilled()) {
+    form.closeForm();
+    return;
   }
 
-  writeFile(form.getResponses());
-  process.stdin.destroy();
-  logger(`thank you`);
+  logger(form.getPrompt());
 };
 
-const fillForm = function (form, logger, fileName) {
+const fillForm = function (form, logger) {
+  process.stdin.setEncoding('utf8');
+
   logger(form.getPrompt());
-  const writeFile = writeJson.bind(null, fileName);
+
   process.stdin.on('data', (response) => {
-    registerField(form, response.trim(), logger, writeFile);
+    registerField(form, response.trim(), logger);
   });
 };
 

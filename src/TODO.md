@@ -1,10 +1,11 @@
 - **DOING**
 
 - **TODO**
-- [ ] Add functionality for adding address.
-- [ ] Add `multilineField` class.
+  - [ ] Add functionality for adding address.
+  - [ ] Add `multilineField` class.
 
 - **DONE**
+  - [x] Send callback to `Form` for saving and stopping stdin
   - [x] Inject writeFile dependency
   - [x] Inject console log dependency
   - [x] Move write file out of `Form` class.

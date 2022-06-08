@@ -5,24 +5,13 @@ const { registerField } = require('../src/fillForm.js');
 
 
 describe('description', () => {
-  it('Should register given response to appropriate field', () => {
-    const field = new Field('name', '');
-    const form = new Form(field);
-
-    const expected = { name: 'prem' };
-    registerField(form, 'prem', x => x, x => x);
-    const actual = form.getResponses();
-
-    assert.deepStrictEqual(actual, expected);
-  });
-
   it('should display prompt for expected field', () => {
     const logs = [];
     mockedConsole = input => logs.push(input);
 
     const nameField = new Field('name', 'enter name');
     const dobField = new Field('dob', 'enter dob');
-    const form = new Form(nameField, dobField);
+    const form = new Form(x => x, nameField, dobField);
 
     registerField(form, 'prem', mockedConsole, 'a');
 
@@ -36,7 +25,7 @@ describe('description', () => {
     mockedConsole = input => logs.push(input);
 
     const nameField = new Field('name', 'enter name', x => x.length > 4);
-    const form = new Form(nameField);
+    const form = new Form(x => x, nameField);
 
     registerField(form, 'prem', mockedConsole, x => x);
 
@@ -54,7 +43,7 @@ describe('description', () => {
     const writeFile = mockedWriteToFile.bind(null, 'fileName')
 
     const nameField = new Field('name', 'enter name');
-    const form = new Form(nameField);
+    const form = new Form(writeFile, nameField);
 
     registerField(form, 'prem', mockedConsole, writeFile);
 
