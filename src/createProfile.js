@@ -15,15 +15,15 @@ const commaSplit = x => x.split(',');
 
 process.stdin.setEncoding('utf8');
 
-const main = function () {
+const main = function (fileName) {
   const nameField = new Field('name', 'Enter Your Name', isNameValid, identity)
   const dobField = new Field('dob', 'Enter Your DOB', isDOBValid, identity)
   const hobbiesField = new Field('hobbies', 'Enter Your Hobbies', areHobbiesValid, commaSplit)
   const numField = new Field('ph_no', 'Enter your phone num.', isPhoneNumValid, identity)
   const form = new Form(nameField, dobField, hobbiesField, numField);
 
-  fillForm(form);
+  fillForm(form, fileName);
 };
 
-main();
+main('./form.json');
 

@@ -1,5 +1,3 @@
-const fs = require('fs');
-
 const writeJson = function (file, data) {
   fs.writeFileSync(file, JSON.stringify(data), 'utf-8');
 };
@@ -29,14 +27,10 @@ class Form {
     return this.#fields.every(field => field.isFilled());
   }
 
-  #getResponses() {
+  getResponses() {
     const responses = {};
     return this.#fields.reduce((responses, field) =>
       ({ ...responses, ...field.getResponse() }), responses);
-  }
-
-  saveForm() {
-    writeJson('profile.json', this.#getResponses());
   }
 }
 
