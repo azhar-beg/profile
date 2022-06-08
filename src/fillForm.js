@@ -20,7 +20,6 @@ const registerField = function (form, response, logger, fileName) {
   }
   onCompleteForm(fileName, form.getResponses());
   logger(`thank you`);
-  1
 };
 
 const fillForm = function (form, logger, fileName) {
