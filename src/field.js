@@ -11,7 +11,7 @@ class Field {
     this.#parser = parser;
   }
 
-  fillField(response) {
+  fill(response) {
     if (!this.#validator(response)) {
       throw new Error('invalid response');
     }

@@ -21,8 +21,10 @@ class Form {
   }
 
   fillField(response) {
-    this.#fields[this.#currentIndex].fillField(response);
-    this.#currentIndex++;
+    this.#fields[this.#currentIndex].fill(response);
+    if (this.#fields[this.#currentIndex].isFilled()) {
+      this.#currentIndex++;
+    }
   }
 
   #getResponses() {
