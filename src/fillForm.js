@@ -18,8 +18,9 @@ const fillForm = function (form, logger) {
 
   logger(form.getPrompt());
 
-  process.stdin.on('data', (response) => {
-    registerField(form, response.trim(), logger);
+  process.stdin.on('data', (chunk) => {
+    const responses = chunk.trim().split('\n');
+    responses.forEach(response => registerField(form, response.trim(), logger))
   });
 };
 
