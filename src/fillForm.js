@@ -1,4 +1,3 @@
-
 const registerField = function (form, response, logger) {
   try {
     form.fillField(response);

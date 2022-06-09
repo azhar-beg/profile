@@ -1,10 +1,10 @@
 - **DOING**
 
 - **TODO**
-- [ ] Move adding field functionality to different file.
 
 
 - **DONE**
+  - [x] Move adding field functionality to different file.
   - [x] Add functionality for adding address.
   - [x] Add `multilineField` class.
   - [x] Change getResponses in `Form` class.  
